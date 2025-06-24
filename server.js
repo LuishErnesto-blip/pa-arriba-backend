@@ -18,7 +18,7 @@ const pool = new Pool({
 });
 // Middleware
 const corsOptions = {
-    origin: ['http://localhost:3001', 'http://192.168.100.16:3001'], // Permite ambos orígenes
+origin: ['http://localhost:3001', 'http://192.168.100.16:3001', 'https://pa-arriba-frontend.vercel.app'], // Permite orígenes local, IP y Vercel
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204
