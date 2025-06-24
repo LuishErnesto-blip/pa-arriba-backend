@@ -37,7 +37,6 @@ CREATE TABLE public.compras (
 );
 
 
-ALTER TABLE public.compras OWNER TO postgres;
 
 --
 -- Name: compras_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -52,13 +51,11 @@ CREATE SEQUENCE public.compras_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.compras_id_seq OWNER TO postgres;
 
 --
 -- Name: compras_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.compras_id_seq OWNED BY public.compras.id;
 
 
 --
@@ -73,7 +70,6 @@ CREATE TABLE public.detalle_receta (
 );
 
 
-ALTER TABLE public.detalle_receta OWNER TO postgres;
 
 --
 -- Name: detalle_receta_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -88,13 +84,11 @@ CREATE SEQUENCE public.detalle_receta_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.detalle_receta_id_seq OWNER TO postgres;
 
 --
 -- Name: detalle_receta_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.detalle_receta_id_seq OWNED BY public.detalle_receta.id;
 
 
 --
@@ -112,7 +106,6 @@ CREATE TABLE public.ingredientes (
 );
 
 
-ALTER TABLE public.ingredientes OWNER TO postgres;
 
 --
 -- Name: ingredientes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -127,13 +120,11 @@ CREATE SEQUENCE public.ingredientes_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.ingredientes_id_seq OWNER TO postgres;
 
 --
 -- Name: ingredientes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.ingredientes_id_seq OWNED BY public.ingredientes.id;
 
 
 --
@@ -157,7 +148,6 @@ CREATE TABLE public.ingredientes_receta (
 );
 
 
-ALTER TABLE public.ingredientes_receta OWNER TO postgres;
 
 --
 -- Name: ingredientes_receta_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -172,13 +162,11 @@ CREATE SEQUENCE public.ingredientes_receta_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.ingredientes_receta_id_seq OWNER TO postgres;
 
 --
 -- Name: ingredientes_receta_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.ingredientes_receta_id_seq OWNED BY public.ingredientes_receta.id;
 
 
 --
@@ -194,7 +182,6 @@ CREATE TABLE public.metas_diarias (
 );
 
 
-ALTER TABLE public.metas_diarias OWNER TO postgres;
 
 --
 -- Name: metas_diarias_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -209,13 +196,11 @@ CREATE SEQUENCE public.metas_diarias_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.metas_diarias_id_seq OWNER TO postgres;
 
 --
 -- Name: metas_diarias_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.metas_diarias_id_seq OWNED BY public.metas_diarias.id;
 
 
 --
@@ -234,7 +219,6 @@ CREATE TABLE public.pagos_diarios (
 );
 
 
-ALTER TABLE public.pagos_diarios OWNER TO postgres;
 
 --
 -- Name: pagos_diarios_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -249,13 +233,11 @@ CREATE SEQUENCE public.pagos_diarios_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.pagos_diarios_id_seq OWNER TO postgres;
 
 --
 -- Name: pagos_diarios_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.pagos_diarios_id_seq OWNED BY public.pagos_diarios.id;
 
 
 --
@@ -270,7 +252,6 @@ CREATE TABLE public.recetas (
 );
 
 
-ALTER TABLE public.recetas OWNER TO postgres;
 
 --
 -- Name: recetas_estandar; Type: TABLE; Schema: public; Owner: postgres
@@ -291,7 +272,6 @@ CREATE TABLE public.recetas_estandar (
 );
 
 
-ALTER TABLE public.recetas_estandar OWNER TO postgres;
 
 --
 -- Name: recetas_estandar_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -306,13 +286,11 @@ CREATE SEQUENCE public.recetas_estandar_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.recetas_estandar_id_seq OWNER TO postgres;
 
 --
 -- Name: recetas_estandar_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.recetas_estandar_id_seq OWNED BY public.recetas_estandar.id;
 
 
 --
@@ -328,13 +306,11 @@ CREATE SEQUENCE public.recetas_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.recetas_id_seq OWNER TO postgres;
 
 --
 -- Name: recetas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.recetas_id_seq OWNED BY public.recetas.id;
 
 
 --
@@ -355,7 +331,6 @@ CREATE TABLE public.ventas (
 );
 
 
-ALTER TABLE public.ventas OWNER TO postgres;
 
 --
 -- Name: ventas_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
@@ -370,13 +345,11 @@ CREATE SEQUENCE public.ventas_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.ventas_id_seq OWNER TO postgres;
 
 --
 -- Name: ventas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE public.ventas_id_seq OWNED BY public.ventas.id;
 
 
 --
