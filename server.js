@@ -3,7 +3,10 @@ const express = require('express');
 const { Pool } = require('pg');
 const cors = require('cors'); // Importa el módulo CORS
 const app = express();
+const fs = require('fs').promises; // Módulo para leer archivos de forma asíncrona
+const path = require('path'); // Módulo para manejar rutas de archivos
 const port = process.env.PORT || 3000; // Usar el puerto proporcionado por el entorno (Render), o 3000 por defecto
+
 // Configuración de la conexión a PostgreSQL
 // Configuración de la conexión a PostgreSQL (usando variables de entorno para Render)
 const pool = new Pool({
@@ -15,7 +18,41 @@ const pool = new Pool({
     ssl: { // Configuración SSL/TLS para conexiones seguras (necesario en Render)
         rejectUnauthorized: false
     }
-});
+}); // <-- ¡ESTA ES LA CORRECCIÓN CLAVE! Cierra correctamente el pool.
+
+// Función para ejecutar el script SQL de inicialización de la base de datos
+async function runDbInitialization() {
+    // Solo ejecuta si la variable de entorno INIT_DB está establecida a 'true'
+    if (process.env.INIT_DB === 'true') {
+        console.log('Iniciando la ejecución del script de inicialización de la base de datos...');
+        const schemaPath = path.join(__dirname, 'init.sql'); // Ruta al archivo init.sql
+        try {
+            const schemaSql = await fs.readFile(schemaPath, 'utf8'); // Lee el archivo SQL
+            await pool.query(schemaSql); // Ejecuta el SQL en la base de datos
+            console.log('¡Esquema de base de datos inicializado exitosamente!');
+
+            // IMPORTANTE: Una vez que el esquema se ha inicializado en Render.com,
+            // DEBES deshabilitar la variable INIT_DB=true en Render.com
+            // para evitar que este script se ejecute en futuros despliegues o reinicios.
+            // Esto es solo para la configuración inicial de la base de datos.
+
+        } catch (error) {
+            // Ignorar errores si la tabla ya existe (por ejemplo, "relation already exists")
+            // Código de error 42P07 es para "duplicate_table" en PostgreSQL
+            if (error.code === '42P07') {
+                console.warn('Advertencia: Las tablas ya existen, saltando la inicialización del esquema.');
+            } else {
+                console.error('❌ Error crítico al inicializar el esquema de la base de datos:', error);
+                // Detener la aplicación si la base de datos no se puede inicializar correctamente
+                // (Esto es crucial para evitar que la aplicación intente operar sin un esquema)
+                process.exit(1);
+            }
+        }
+    } else {
+        console.log('Saltando la inicialización del esquema de la base de datos (INIT_DB no está en true).');
+    }
+}
+
 // Middleware
 const corsOptions = {
 origin: ['http://localhost:3001', 'http://192.168.100.16:3001', 'https://pa-arriba-frontend.vercel.app'], // Permite orígenes local, IP y Vercel
@@ -1302,6 +1339,7 @@ const gastosIngredientes = parseFloat(gastosIngredientesResult.rows[0].gastos_in
 
 // Este es un comentario de referencia. La línea app.listen debe estar después de este bloque.
 // Iniciar el servidor
-app.listen(port, '0.0.0.0', () => {
-    console.log(`🚀 Servidor backend de Pa' Arriba! escuchando en el puerto ${port}`); // Mensaje actualizado
+app.listen(port, '0.0.0.0', async () => { // LÍNEA 1332: Añadir 'async' aquí para usar await
+    await runDbInitialization(); // LÍNEA 1333: ¡Esta línea debe estar aquí!
+    console.log(`🚀 Servidor backend de Pa' Arriba! escuchando en el puerto ${port}`);
 });
